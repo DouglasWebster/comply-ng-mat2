@@ -81,12 +81,21 @@ var appRouter = function (app) {
                 if (error) {
                     return res.status(400).send(error);
                 }
-                if(users.length > 0) {
-                    project.users.push(users[0]);
-                    project.save(function(error) {
-                        if(error) {
+                if (users.length > 0) {
+                    ProjectModel.find({ users: { $contains: UserModel.ref(users[0]._id)}, _id: req.body.projectId  }, function (error, found) {
+                        if( error ) {
                             return res.status(400).send(error);
                         }
+                        if (found.length > 0) {
+                            return res.status(400).send({"status": "error", "message": "User already included"});
+                        }
+                        project.users.push(users[0]);
+                        project.save(function (error) {
+                            if (error) {
+                                return res.status(400).send(error);
+                            }
+                            res.send(users[0]);
+                        });
                     });
                 } else {
                     return res.status(400).send({ "status": "error", "message": "User does not exist" });
