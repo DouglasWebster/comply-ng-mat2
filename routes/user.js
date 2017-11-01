@@ -2,52 +2,52 @@ var bcrypt = require("bcryptjs");
 var UserModel = require("../models/user");
 var CompanyModel = require("../models/company");
 
-var appRouter = function(app) {
+var appRouter = function (app) {
 
-    app.get("/api/user/get/:userId", function(req, res) {
-        if(!req.params.userId) {
-            return res.status(400).send({"status": "error", "message": "A user id is required"});
+    app.get("/api/user/get/:userId", function (req, res) {
+        if (!req.params.userId) {
+            return res.status(400).send({ "status": "error", "message": "A user id is required" });
         }
-        UserModel.getById(req.params.userId, function(error, user) {
-            if(error) {
+        UserModel.getById(req.params.userId, function (error, user) {
+            if (error) {
                 return res.status(400).send(error);
             }
             res.send(user);
         });
     });
 
-    app.get("/api/user/getAll", function(req, res) {
-        UserModel.find({}, {load: ["company"]}, function(error, result) {
-            if(error) {
+    app.get("/api/user/getAll", function (req, res) {
+        UserModel.find({}, { load: ["company"] }, function (error, result) {
+            if (error) {
                 return res.status(400).send(error);
             }
             res.send(result);
         });
     });
 
-    app.get("/api/user/login/:email/:password", function(req, res) {
-        if(!req.params.email) {
-            return res.status(400).send({"status": "error", "message": "An email is required"});
-        } else if(!req.params.password) {
-            return res.status(400).send({"status": "error", "message": "A password is required"});
+    app.get("/api/user/login/:email/:password", function (req, res) {
+        if (!req.params.email) {
+            return res.status(400).send({ "status": "error", "message": "An email is required" });
+        } else if (!req.params.password) {
+            return res.status(400).send({ "status": "error", "message": "A password is required" });
         }
-        UserModel.findByEmail(req.params.email, function(error, users) {
-            if(error) {
+        UserModel.findByEmail(req.params.email, function (error, users) {
+            if (error) {
                 return res.status(400).send(error);
             }
-            if(users.length > 0) {
-                if(bcrypt.compareSync(req.params.password, users[0].password)) {
+            if (users.length > 0) {
+                if (bcrypt.compareSync(req.params.password, users[0].password)) {
                     res.send(users[0]);
                 } else {
-                    res.status(400).send({"status": "error", "message": "Password is invalid"});
+                    res.status(400).send({ "status": "error", "message": "Password is invalid" });
                 }
             } else {
-                res.status(400).send({"status": "error", "message": "Email does not exist"});
+                res.status(400).send({ "status": "error", "message": "Email does not exist" });
             }
         });
     });
 
-    app.post("/api/user/create", function(req, res) {
+    app.post("/api/user/create", function (req, res) {
         var user = new UserModel({
             name: {
                 first: req.body.name.first,
