@@ -45,6 +45,8 @@ Couchbase Server - [http://www.couchbase.com](http://www.couchbase.com)
 
 Ottoman - [http://ottomanjs.com](http://ottomanjs.com)
 
+Original Couchbase Compliance Demo with node.js - [https://github.com/couchbaselabs/comply-nodejs](https://github.com/couchbaselabs/comply-nodejs)
+
 Couchbase Compliance Demo with Java - [https://github.com/couchbaselabs/comply-java](https://github.com/couchbaselabs/comply-java)
 
 Couchbase Compliance Demo with GoLang - [https://github.com/couchbaselabs/comply-golang](https://github.com/couchbaselabs/comply-golang)
