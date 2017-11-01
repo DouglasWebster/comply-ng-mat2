@@ -1,0 +1,38 @@
+<h1 class="mdl-dialog-title" style="text-align: center">Register Company</h1>
+<div class="warn" *ngIf="companyFailure">{{companyFailure}}</div>
+<form [formGroup]="companyForm" (ngSubmit)="doNewCompany()" ngnovalidate class="company-form">
+  <div class="mdl-dialog-content">
+    <mat-form-field style="width:100%">
+      <input matInput formControlName="name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput formControlName="street" placeholder="Street">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput formControlName="city" placeholder="City">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput formControlName="state" placeholder="State">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput formControlName="zip" placeholder="ZIP Code">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput formControlName="country" placeholder="Country">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput formControlName="phone" placeholder="Phone Number">
+    </mat-form-field>
+    <mat-form-field style="width:100%">
+      <input matInput formControlName="website" placeholder="Website Address">
+    </mat-form-field>
+    <p></p>
+  </div>
+  <div class="mdl-dialog-actions" style="text-align: center">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!companyForm.valid">Register</button>
+    <button mat-button matDialogClose=''>Cancel</button>
+    <div *ngIf="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</form>
