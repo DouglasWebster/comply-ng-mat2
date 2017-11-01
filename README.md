@@ -2,6 +2,8 @@
 
 This project is meant to demonstrate a full stack application using Couchbase, Express Framework, Angular 2, and Node.js.  This particular stack is called the CEAN stack or CANE stack.  With the Object Document Modeling (ODM) tool Ottoman, we can easily create relationships between documents within the application.
 
+I have updated the front end angular application to use the latest verison of angular at the time and to use the angular material 2 library.  As far as practicable I have tried to keep the look and feel the same as the original.
+
 ## Installation
 
 Download or clone the project from GitHub and run the following via the Command Prompt (Windows) or Terminal (Mac and Linux):
@@ -25,6 +27,8 @@ If there were no compile time errors, you should be left with a **public** direc
 
 This project expects a Couchbase Server bucket to exist named **comply**.  This bucket name can be changed in the project's **config.json** file.
 
+This project uses the a couchbase docker running on a local machine but the user is free to use any couchbase implementation and to alter **config.json** accordingly.
+
 ## Running the Project
 
 From the root of the project, in your Command Prompt or Terminal execute the following to run the Node.js backend:
@@ -40,6 +44,8 @@ Because the Angular 2 TypeScript files were compiled in the installation step, a
 Couchbase Server - [http://www.couchbase.com](http://www.couchbase.com)
 
 Ottoman - [http://ottomanjs.com](http://ottomanjs.com)
+
+Original Couchbase Compliance Demo with node.js - [https://github.com/couchbaselabs/comply-nodejs](https://github.com/couchbaselabs/comply-nodejs)
 
 Couchbase Compliance Demo with Java - [https://github.com/couchbaselabs/comply-java](https://github.com/couchbaselabs/comply-java)
 

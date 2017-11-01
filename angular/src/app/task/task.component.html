@@ -1,0 +1,67 @@
+<mat-card>
+  <mat-card-title>
+    <a [routerLink]="['/tasks', project._id]">{{project.name}}</a> /
+    <small>{{task.name}}</small>
+  </mat-card-title>
+  <mat-card-subtitle>
+    <strong>Task Description: </strong> {{task.description}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
+    <a [routerLink]="['/t', task.permalink]">permalink</a>
+  </mat-card-subtitle>
+  <div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="20px" fxLayout.xs="column">
+    <mat-card fxFlex="75">
+      <mat-toolbar>
+        Task History
+        <span style="flex: 1 1 auto"></span>
+        <button mat-raised-button color="primary" (click)="doNewPhoto()">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </mat-toolbar>
+      <textarea matInput [(ngModel)]='comment' style="width: 100%; height: 50px"></textarea>
+      <mat-card-actions>
+        <mat-toolbar>
+          <span style="flex: 1 1 auto"></span>
+          <button mat-raised-button color="primary" (click)="reply(comment)">
+            Reply
+          </button>
+        </mat-toolbar>
+      </mat-card-actions>
+      <mat-card-content>
+        <mat-card-subtitle *ngFor="let item of task.history">
+          <p class="small">
+            <strong>{{item.user.name.first}} {{item.user.name.last}} - {{parseDate(item.createdAt)}}</strong>
+          </p>
+          <p>{{item.log}}</p>
+          <div *ngIf="item.photos">
+            <a href="/cdn/{{item.photos[0].filename}}">
+              <img height="75" width="75" alt="click for full size" src="/cdn/{{item.photos[0].filename}}">
+            </a>
+          </div>
+        </mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+    <mat-card fxFlex>
+      <mat-card-title>
+        Assigned To
+      </mat-card-title>
+      <mat-form-field>
+        <mat-select [(ngModel)]="task.assignedTo._id" (change)="change($event)">
+          <mat-option *ngFor="let user of users" value="{{user._id}}">{{user.name.first}} {{user.name.last}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-card-title>
+        Users
+      </mat-card-title>
+      <mat-card-content *ngFor="let user of task.users">
+          {{user.name.first}} {{user.name.last}}
+      </mat-card-content>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="taskUser" placeholder="New User email...">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="addUser(taskUser)">
+          Add
+        </button>
+    </mat-card>
+  </div>
+</mat-card>

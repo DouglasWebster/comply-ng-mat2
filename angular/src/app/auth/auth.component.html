@@ -1,0 +1,14 @@
+<h1 class="page-header">Auth</h1>
+<div class="  warn" *ngIf="loginWarning">{{loginWarning}}</div>
+<form [formGroup]="loginForm" (ngSubmit)="login()" ngnovalidate class="auth-form">
+    <mat-form-field class="auth-field-full-width">
+        <input matInput class="form-control" type="email" formControlName="email" placeholder="email">
+    </mat-form-field>
+    <mat-form-field class="auth-field-full-width">
+        <input matInput type="password" class="form-control" formControlName="password" placeholder="Password">
+    </mat-form-field>
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" class="btn btn-default" (click)="doNewUser()">Register</button>
+        <button type="button" class="btn btn-default" (click)="login(email, password)">Sign in</button>
+    </div>
+</form>

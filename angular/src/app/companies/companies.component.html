@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-title>
+        Companies &nbsp;
+        <button class="btn btn-primary" type="button" (click)="doNewCompany()">New Company</button>
+    </mat-card-title>
+</mat-card>
+<div class="company-container mat-elevation-z8" matSort>
+    <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="city">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> City</mat-header-cell>
+            <mat-cell *matCellDef="let companies"> {{companies.address.city}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="state">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> State</mat-header-cell>
+            <mat-cell *matCellDef="let companies"> {{companies.address.state}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="website">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Website</mat-header-cell>
+            <mat-cell *matCellDef="let companies"> {{companies.website}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+</div>

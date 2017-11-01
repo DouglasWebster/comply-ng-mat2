@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-title>
+    <a [routerLink]="['/tasks', project._id]">{{project.name}}</a> /
+    <small>{{task.name}}</small>
+  </mat-card-title>
+  <mat-card-subtitle>
+    <strong>Task Description: </strong> {{task.description}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
+    <strong>Task Created ON: </strong> {{task.createdON}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
+    <a [routerLink]="['/t', task.permalink]">permalink</a>
+  </mat-card-subtitle>
+</mat-card>

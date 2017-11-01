@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-title>
+    PROJECTS &nbsp;
+    <button class="btn btn-primary" type="button" (click)="doNewProject()">New Project</button>
+  </mat-card-title>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="20px" fxLayout.xs="column" >
+      <mat-card fxFlex="33">
+        <mat-card-title> Tasks I'm Assigned</mat-card-title>
+        <ng-template ngFor let-task [ngForOf]="assignedTasks">
+          <mat-card-subtitle>
+            <a [routerLink]="['/task', task._id]">{{task.name}}</a>
+          </mat-card-subtitle>
+          <mat-card-content>
+            {{task.description.substring(0, 200)}} ...
+          </mat-card-content>
+        </ng-template>
+      </mat-card>
+      <mat-card fxFlex="33">
+        <mat-card-title>Projects I Own</mat-card-title>
+        <ng-template ngFor let-project [ngForOf]="projects">
+          <mat-card-subtitle>
+            <a [routerLink]="['/tasks', project._id]">{{project.name}}</a>
+          </mat-card-subtitle>
+          <mat-card-content>
+            {{project.description.substring(0, 200)}} ...
+          </mat-card-content>
+        </ng-template>
+      </mat-card>
+      <mat-card fxFlex>
+        <mat-card-title>Project's I'm A Part Of</mat-card-title>
+        <ng-template ngFor let-project [ngForOf]="projects">
+          <mat-card-subtitle>
+            <a [routerLink]="['/tasks', project._id]">{{project.name}}</a>
+          </mat-card-subtitle>
+          <mat-card-content>
+            {{project.description.substring(0, 200)}} ...
+          </mat-card-content>
+        </ng-template>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,26 @@
+<h1 class="mdl-dialog-title" style="text-align: center">Create New Task</h1>
+<div class="warn" *ngIf="taskFailure">{{taskFailure}}</div>
+<div class="mdl-dialog-content">
+  <form [formGroup]="taskForm" (ngSubmit)="createTask()" ngnovalidate class="create-form">
+    <mat-form-field style="width: 100%">
+      <input matInput type="text" formControlName="name" placeholder="name">
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <textarea matInput type="text" formControlName="description" placeholder="description" rows="3"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="assignedTo" placeholder="assignedTo">
+        <mat-option value="" disabled selected>Select...</mat-option>
+        <mat-option *ngFor="let user of assignees" [value]="user._id">{{user.name.first}} {{user.name.last}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<p></p>
+<div class="mdl-dialog-actions" style="text-align: center">
+  <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.valid" color="primary">Register</button>
+  <button mat-button matDialogClose=''>Cancel</button>
+  <div *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

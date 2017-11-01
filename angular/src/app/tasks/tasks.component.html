@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-title>
+    {{project.name}}
+  </mat-card-title>
+  <mat-card-subtitle>
+    <strong>Project Description: </strong> {{project.description}}</mat-card-subtitle>
+  <mat-card-subtitle>
+    <strong>Project Created ON: </strong> {{project.createdON}}</mat-card-subtitle>
+  <mat-card-subtitle>
+    <strong>Project Status: </strong> {{project.status}}</mat-card-subtitle>
+  <mat-card-subtitle>
+    <a [routerLink]="['/p', project.permalink]">permalink</a>
+  </mat-card-subtitle>
+  <div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="20px" fxLayout.xs="column">
+    <mat-card fxFlex="75">
+      <mat-toolbar>
+        <mat-card-title>Tasks</mat-card-title>
+        <span style="flex: 1 1 auto"></span>
+        <button mat-raised-button color="primary" (click)="doNewTask()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-toolbar>
+      <div *ngFor="let task of project.tasks">
+        <mat-card-subtitle>
+          <a [routerLink]="['/task', task._id]">{{task.name}}</a>
+        </mat-card-subtitle>
+        <mat-card-content style="margin-left: 40px">
+          {{task.description}}
+        </mat-card-content>
+      </div>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>
+        Users
+      </mat-card-title>
+      <mat-card-subtitle *ngFor="let user of project.users">
+        {{user.name.first}} {{user.name.last}}
+      </mat-card-subtitle>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="projectUser" placeholder="User email...">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="doNewUser(projectUser)">
+        Add
+      </button>
+    </mat-card>
+  </div>
+</mat-card>
