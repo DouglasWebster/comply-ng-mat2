@@ -6,7 +6,7 @@ export interface ITask {
     name: string;
     description: string;
     owner: IUser;
-    assignedTo: Object;
+    assignedTo: IUser;
     users: Array<Object>;
     history: Array<Object>;
     permalink: string;
