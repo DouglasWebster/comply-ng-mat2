@@ -14,6 +14,49 @@ import { AuthManagerService, UtilityService } from '../services/index';
 import { ICompany } from '../interfaces/index';
 import { NewCompanyComponent } from './new-company/new-company.component';
 
+export class CompaniesDataSource extends DataSource<any> {
+
+  constructor(private _subject: BehaviorSubject<ICompany[]>, private _sort: MatSort) {
+    super();
+  }
+
+  connect(): Observable<ICompany[]> {
+    const displayDataChanges = [
+      this._subject.value,
+      this._sort.sortChange
+    ];
+
+    return Observable.merge(...displayDataChanges).map(() => {
+      return this.getSortedData();
+    });
+
+  }
+
+  disconnect(): void { }
+
+  getSortedData(): ICompany[] {
+    const data = this._subject.value;
+    if (!this._sort.active || this._sort.direction === '') { return data; }
+
+    return data.sort((a, b) => {
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this._sort.active) {
+        case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
+        case 'city': [propertyA, propertyB] = [a.address.city, b.address.city]; break;
+        case 'state': [propertyA, propertyB] = [a.address.state, b.address.state]; break;
+        case 'website': [propertyA, propertyB] = [a.website, b.website]; break;
+      }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
+    });
+  }
+}
+
 @Component({
   selector: 'app-company',
   templateUrl: './companies.component.html',
@@ -64,46 +107,3 @@ export class CompaniesComponent implements OnInit {
 
 }
 
-export class CompaniesDataSource extends DataSource<any> {
-
-  constructor(private _subject: BehaviorSubject<ICompany[]>, private _sort: MatSort) {
-    super();
-  }
-
-  connect(): Observable<ICompany[]> {
-    const displayDataChanges = [
-      this._subject.value,
-      this._sort.sortChange
-    ];
-
-    return Observable.merge(...displayDataChanges).map(() => {
-      return this.getSortedData();
-    });
-
-  }
-
-  disconnect(): void { }
-
-  getSortedData(): ICompany[] {
-    const data = this._subject.value;
-    if (!this._sort.active || this._sort.direction === '') { return data; }
-
-    return data.sort((a, b) => {
-      let propertyA: number | string = '';
-      let propertyB: number | string = '';
-
-      switch (this._sort.active) {
-        case 'name': [propertyA, propertyB] = [a.name, b.name]; break;
-        case 'city': [propertyA, propertyB] = [a.address.city, b.address.city]; break;
-        case 'state': [propertyA, propertyB] = [a.address.state, b.address.state]; break;
-        case 'website': [propertyA, propertyB] = [a.website, b.website]; break;
-      }
-
-      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-      return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
-    });
-  }
-
-}

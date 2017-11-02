@@ -33,7 +33,7 @@ export class TaskComponent implements OnInit {
   ) {
     this.users = [];
     this.project = { _id: '', name: '', description: '', owner: <IUser>{}, users: [], tasks: [], permalink: '' };
-    this.task = { _id: '', name: '', description: '', owner: null, assignedTo: { name: {} }, users: [], history: [], permalink: '' };
+    this.task = { _id: '', name: '', description: '', owner: null, assignedTo: <IUser>{}, users: [], history: [], permalink: '' };
   }
 
   ngOnInit() {

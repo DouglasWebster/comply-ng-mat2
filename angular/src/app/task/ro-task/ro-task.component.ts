@@ -24,7 +24,7 @@ export class RoTaskComponent implements OnInit {
     private utility: UtilityService,
   ) {
     this.project = { _id: '', name: '', description: '', owner: <IUser>{}, users: [], tasks: [], permalink: '' };
-    this.task = { _id: '', name: '', description: '', owner: null, assignedTo: { name: {} }, users: [], history: [], permalink: '' };
+    this.task = { _id: '', name: '', description: '', owner: null, assignedTo: <IUser>{}, users: [], history: [], permalink: '' };
   }
 
   ngOnInit() {
