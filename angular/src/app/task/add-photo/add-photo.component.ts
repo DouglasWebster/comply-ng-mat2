@@ -16,7 +16,7 @@ import { IProject, ITask, IUser } from '../../interfaces/index';
 export class AddPhotoComponent implements OnInit {
 
   photoForm: FormGroup;
-  projectFailure = '';
+  photoFailure = '';
   loading = false;
   taskId: string;
   users: Array<IUser>;
