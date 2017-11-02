@@ -7,6 +7,9 @@
     <strong>Task Description: </strong> {{task.description}}
   </mat-card-subtitle>
   <mat-card-subtitle>
+    <strong>Task Created: </strong> {{task.createdON | date:'MMMM dd, y @ HH:mm:ss'}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
     <a [routerLink]="['/t', task.permalink]">permalink</a>
   </mat-card-subtitle>
   <div fxLayout="row" fxLayoutAlign=" start" fxLayoutGap="20px" fxLayout.xs="column">
