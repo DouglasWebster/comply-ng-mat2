@@ -51,7 +51,7 @@ export class AuthComponent implements OnInit {
 
   }
 
-  login() {
+  public login() {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     if (!email || email === '') {
