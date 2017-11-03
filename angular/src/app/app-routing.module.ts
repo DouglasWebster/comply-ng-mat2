@@ -16,7 +16,7 @@ import { CompaniesGuard } from './companies/companies.guard';
 const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'projects', component: ProjectComponent, canActivate: [ProjectGuard] },
-  { path: 'companies', component: CompaniesComponent, canActivate: [CompaniesGuard]},
+  { path: 'companies', component: CompaniesComponent, canActivate: [CompaniesGuard] },
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
   { path: 'task/:taskId', component: TaskComponent },
   { path: 'tasks/:projectId', component: TasksComponent },
@@ -28,7 +28,7 @@ const routes: Routes = [
   declarations: [
   ],
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   exports: [
     RouterModule
