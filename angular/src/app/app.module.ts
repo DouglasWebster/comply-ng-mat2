@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ComplyMaterialModule } from './comply-material.module';
@@ -70,4 +71,10 @@ import { ByteFormatPipe } from './helpers/byte-format.pipe';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  // Diagnostic only: inspect router configuration
+  constructor(router: Router) {
+    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+  }
+
+}
