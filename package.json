@@ -7,7 +7,7 @@
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.14.2",
-    "couchbase": "~2.2.5",
+    "couchbase": "^2.4.3",
     "es6-shim": "^0.35.1",
     "express": "^4.13.3",
     "hashids": "*",
