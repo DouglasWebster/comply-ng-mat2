@@ -10,7 +10,9 @@ import {
     MatMenuModule,
     MatIconModule,
     MatTableModule,
-    MatSortModule
+    MatSidenavModule,
+    MatSortModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -28,7 +30,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatMenuModule,
         MatIconModule,
         MatTableModule,
-        MatSortModule
+        MatSidenavModule,
+        MatSortModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         FlexLayoutModule,
@@ -41,7 +45,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatMenuModule,
         MatIconModule,
         MatTableModule,
-        MatSortModule
+        MatSidenavModule,
+        MatSortModule,
+        MatProgressSpinnerModule
     ]
 })
 export class ComplyMaterialModule { }
