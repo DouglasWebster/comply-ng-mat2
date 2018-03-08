@@ -1,8 +1,10 @@
 var ottoman = require("ottoman");
+var couchbase = require('couchbase');
 var validator = require("../validators/validators.js");
 var CompanyMdl = require("./company.js");
+var bucket = require('../app').bucket;
 
-ottoman.bucket = require("../app").bucket;
+ottoman.store = new ottoman.CbStoreAdapter(bucket, couchbase);
 
 var UserMdl = ottoman.model("User", {
     createdON: {type: "Date", default:function(){return new Date()}},

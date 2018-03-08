@@ -1,6 +1,6 @@
 {
     "couchbase": {
-        "server": "http://localhost",
+        "server": "http://localhost:8091",
         "bucket": "comply"
 
     },
